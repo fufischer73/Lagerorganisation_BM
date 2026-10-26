@@ -498,3 +498,4 @@ html.lp-gesperrt body > *:not(.lp-zugang), html.lp-teil-gesperrt main { visibili
 .ue-fb.bad { color: var(--bad); }
 .ue-erkl { color: var(--text); margin-top: .3rem; }
 .ue-links img { max-height: 84px; }
+.table-wrap img { max-height: 90px; width: auto; max-width: 100%; display: block; }
