@@ -9,6 +9,7 @@
 <script src="assets/js/kurs.js"></script>
 <script src="assets/js/medien.js" defer></script>
 <script src="assets/js/app.js" defer></script>
+<script src="assets/js/uebung.js" defer></script>
 </head>
 <body data-module="k1">
 <header id="topbar"></header>
@@ -34,6 +35,7 @@
 <p><strong>Meldebestand:</strong> Von der Bestellung bis zur Lieferung vergeht Zeit (Lieferzeit). In dieser Zeit wird weiterverkauft. Deshalb muss <strong>bestellt werden, bevor</strong> der Mindestbestand erreicht ist. Der Bestand, bei dem nachbestellt wird, ist der Meldebestand.</p>
 <div class="box tip"><div class="box-title">Formel für den Meldebestand</div><p>Meldebestand = Tagesverbrauch · Lieferzeit (in Tagen) + Mindestbestand</p>
 </div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Meldebestand berechnen</h3><span class="lvl time">10 min</span></div><p>Von einer Ware werden im Durchschnitt <strong>täglich 15 Stück</strong> verkauft. Die Lieferzeit beträgt <strong>6 Tage</strong>. Der Mindestbestand beträgt <strong>85 Stück</strong>. Wie hoch ist der Meldebestand?</p>
+<div class="box uebung" data-uebung="{&quot;typ&quot;: &quot;rechnen&quot;, &quot;frage&quot;: &quot;Trage dein Ergebnis ein.&quot;, &quot;ergebnisse&quot;: [{&quot;label&quot;: &quot;Meldebestand&quot;, &quot;wert&quot;: 175.0, &quot;einheit&quot;: &quot;Stück&quot;, &quot;toleranz&quot;: 0, &quot;text&quot;: &quot;175&quot;}], &quot;titel&quot;: &quot;Dein Ergebnis&quot;}"></div>
 <details><summary>1 · Tipp</summary><p>Wie viele Stück werden in den 6 Tagen Lieferzeit verbraucht? Dazu kommt der Mindestbestand.</p>
 </details><details><summary>2 · Rechenweg</summary><p>Verbrauch in der Lieferzeit: 15 Stück · 6 Tage = 90 Stück</p>
 <p>Meldebestand = 90 Stück + 85 Stück (Mindestbestand)</p>
@@ -41,6 +43,8 @@
 </details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Lieferant ist langsamer</h3><span class="lvl time">15 min</span></div><p>Ein Artikel: Tagesverbrauch <strong>12 Stück</strong>, geplante Lieferzeit <strong>7 Tage</strong>, Mindestbestand <strong>60 Stück</strong>.</p>
 <p>a) Berechne den Meldebestand.
 b) Der Lieferant braucht tatsächlich <strong>10 Tage</strong>. Wie viele Stück sind beim Eintreffen der Ware im Lager, wenn bei Meldebestand bestellt wurde? Wird der Mindestbestand angetastet?</p>
+<div class="box uebung" data-uebung="{&quot;typ&quot;: &quot;rechnen&quot;, &quot;frage&quot;: &quot;Trage deine Ergebnisse ein.&quot;, &quot;ergebnisse&quot;: [{&quot;label&quot;: &quot;a) Meldebestand&quot;, &quot;wert&quot;: 144.0, &quot;einheit&quot;: &quot;Stück&quot;, &quot;toleranz&quot;: 0, &quot;text&quot;: &quot;144&quot;}, {&quot;label&quot;: &quot;b) Bestand bei Lieferung&quot;, &quot;wert&quot;: 24.0, &quot;einheit&quot;: &quot;Stück&quot;, &quot;toleranz&quot;: 0, &quot;text&quot;: &quot;24&quot;}], &quot;titel&quot;: &quot;Deine Ergebnisse&quot;}"></div>
+<div class="box uebung" data-uebung="{&quot;typ&quot;: &quot;auswahl&quot;, &quot;frage&quot;: &quot;Wird der Mindestbestand von 60 Stück angetastet?&quot;, &quot;optionen&quot;: [{&quot;text&quot;: &quot;Ja, der Bestand von 24 Stück liegt darunter.&quot;, &quot;richtig&quot;: true, &quot;feedback&quot;: &quot;Genau. Dafür ist die „eiserne Reserve“ da.&quot;}, {&quot;text&quot;: &quot;Nein, der Mindestbestand bleibt unberührt.&quot;, &quot;richtig&quot;: false, &quot;feedback&quot;: &quot;Vergleiche 24 Stück mit 60 Stück.&quot;}], &quot;titel&quot;: &quot;Mindestbestand?&quot;}"></div>
 <details><summary>1 · Tipp</summary><p>a) Setze in die Formel ein. b) Berechne, wie viel in 10 Tagen verbraucht wird, und ziehe das vom Meldebestand ab.</p>
 </details><details><summary>2 · Rechenweg</summary><p>a) Meldebestand = 12 · 7 + 60 = 84 + 60 = 144 Stück</p>
 <p>b) Verbrauch in 10 Tagen: 12 · 10 = 120 Stück. Bestand bei Lieferung: 144 − 120 = 24 Stück. Der Mindestbestand von 60 Stück ist unterschritten.</p>

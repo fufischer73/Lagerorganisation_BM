@@ -451,3 +451,50 @@ html.lp-gesperrt body > *:not(.lp-zugang), html.lp-teil-gesperrt main { visibili
 .lp-codefeld input { max-width: 14rem; margin: .3rem .4rem 0 0; }
 .lp-schluessel { border-top-color: var(--hl); }
 .lp-schluessel .lp-code code { font-size: 1.25rem; letter-spacing: .06em; padding: .2rem .6rem; }
+
+
+/* Interaktive Übungen (uebung.js) */
+.uebung { border-left: 5px solid var(--lv-4); }
+.uebung .ue-frage { font-weight: 600; margin: .4rem 0 .7rem; }
+.ue-optionen { display: grid; gap: .4rem; }
+.ue-optionen.bilder { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.ue-opt { font: inherit; text-align: left; padding: .6rem .8rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text); cursor: pointer; }
+.ue-opt:hover { border-color: var(--lv-4); }
+.ue-opt.sel { border-color: var(--lv-4); background: var(--lv-4-soft); }
+.ue-opt.right { background: var(--ok-soft); border-color: var(--ok); }
+.ue-opt.wrong { background: var(--bad-soft); border-color: var(--bad); }
+.ue-optionen.bilder .ue-opt { text-align: center; }
+.uebung img { max-width: 100%; max-height: 130px; height: auto; vertical-align: middle; }
+.ue-zeilen { display: grid; gap: .5rem; }
+.ue-zeile { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .8rem; align-items: center; }
+@media (max-width: 560px) { .ue-zeile { grid-template-columns: 1fr; gap: .25rem; margin-bottom: .4rem; } }
+.uebung select, .uebung input[type=text] { font: inherit; padding: .4rem .55rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); max-width: 100%; }
+.uebung select.right, .uebung input.right { border-color: var(--ok); background: var(--ok-soft); }
+.uebung select.wrong, .uebung input.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.ue-text { line-height: 2.2; }
+.ue-luecke { margin: 0 .15rem; }
+.ue-reihe { list-style: decimal; padding-left: 1.6rem; display: grid; gap: .4rem; }
+.ue-reihe li { padding: .4rem .6rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.ue-reihe li::marker { color: var(--muted); }
+.ue-reihe li { display: list-item; }
+.ue-reihe li > .ue-schritt { margin-right: .6rem; }
+.ue-reihe li.right { background: var(--ok-soft); border-color: var(--ok); }
+.ue-reihe li.wrong { background: var(--bad-soft); border-color: var(--bad); }
+.ue-pfeile { float: right; display: inline-flex; gap: .25rem; }
+.ue-pfeil { font: inherit; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); border-radius: 6px; width: 2rem; height: 1.8rem; cursor: pointer; }
+.ue-pfeil:disabled { opacity: .35; cursor: default; }
+.ue-rechnen { display: grid; gap: .5rem; }
+.ue-rzeile { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.ue-rlabel { min-width: 12ch; font-weight: 600; }
+.ue-zahl { width: 11ch; text-align: right; }
+.ue-einheit { color: var(--muted); }
+.ue-knoepfe { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-top: .8rem; }
+.ue-knoepfe:empty { display: none; }
+.ue-info { color: var(--muted); font-size: .9rem; }
+.ue-sek { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+.ue-fb { margin-top: .6rem; font-size: .95rem; }
+.ue-fb:empty { display: none; }
+.ue-fb.ok { color: var(--ok); }
+.ue-fb.bad { color: var(--bad); }
+.ue-erkl { color: var(--text); margin-top: .3rem; }
+.ue-links img { max-height: 84px; }
