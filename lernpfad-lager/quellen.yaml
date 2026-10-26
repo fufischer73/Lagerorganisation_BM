@@ -23,3 +23,10 @@
   art: gesetz
   status: zu_pruefen
   belegt: Rangfolge Vermeiden, Vorbereitung zur Wiederverwendung, Recycling, sonstige Verwertung, Beseitigung
+- id: q-bgw-bilder
+  titel: Sicherheitszeichen nach ASR A1.3 und GHS-Piktogramme (BGW-Lernportal)
+  url: https://bgw.uv-lernportal.de/
+  art: fachliteratur
+  lizenz: "Laut Lehrkraft für den Unterricht nutzbar; Nutzungsbedingungen noch nicht geprüft"
+  status: zu_pruefen
+  belegt: Bilder im Ordner material/ (zeichen-*.png, ghs-*.png), Bildgröße für das Web verkleinert
