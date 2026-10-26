@@ -1,0 +1,12 @@
+/* Erzeugt von bauen.py: Farben der Stufen und Varianten dieses Kurses. */
+:root {
+  --lv-verstehen: var(--lv-1); --lv-verstehen-soft: var(--lv-1-soft);
+  --lv-organisieren: var(--lv-2); --lv-organisieren-soft: var(--lv-2-soft);
+  --lv-kennzahlen: var(--lv-3); --lv-kennzahlen-soft: var(--lv-3-soft);
+}
+.badge.lv-verstehen { background: var(--lv-verstehen-soft); color: var(--deep); box-shadow: inset 3px 0 0 var(--lv-verstehen); }
+.level-card.verstehen { border-top-color: var(--lv-verstehen); }
+.badge.lv-organisieren { background: var(--lv-organisieren-soft); color: var(--deep); box-shadow: inset 3px 0 0 var(--lv-organisieren); }
+.level-card.organisieren { border-top-color: var(--lv-organisieren); }
+.badge.lv-kennzahlen { background: var(--lv-kennzahlen-soft); color: var(--deep); box-shadow: inset 3px 0 0 var(--lv-kennzahlen); }
+.level-card.kennzahlen { border-top-color: var(--lv-kennzahlen); }
