@@ -1,0 +1,40 @@
+# Kursbeschreibung – Lernpfad Lager (Kaufleute für Büromanagement)
+titel: Lernpfad Lager
+kurzname: lernpfad-lager
+ueberschrift: Lager – organisieren, absichern, auswerten
+untertitel: Du lernst, wie ein Lager aufgebaut ist, wie man sicher und umweltbewusst darin arbeitet und wie du mit Lagerkennzahlen beurteilst, ob sich ein Lager rechnet.
+badges: [OnlyOffice, 3 Stufen · ca. 11 Std.]
+fusszeile: BBZ Rendsburg-Eckernförde · Stand 10/2026
+
+einleitung: |
+  :::notiz 👉 Bevor du startest
+  1. Arbeite die Module **der Reihe nach** durch. Jede Stufe endet mit einem Meilenstein.
+  2. Alle Aufgaben kannst du **selbst kontrollieren**. Rechenaufgaben haben drei Hilfen: **Tipp**, **Rechenweg** und **Ergebnis**. Versuche es zuerst allein und öffne nur so viel Hilfe, wie du brauchst.
+  3. Alles geschieht in der Schule, du brauchst keine Hausaufgaben zu machen.
+  :::
+
+  Als Beispielunternehmen begleitet dich die **BüroComfort GmbH**, ein Großhandel für Büromöbel und Bürobedarf. Die Personen und Zahlen sind ausgedacht.
+
+stufen:
+  - id: verstehen
+    name: Lager verstehen
+    icon: "🌱"
+    text: Aufgaben, Grundsätze und Arten von Lagern kennen und für ein Beispielunternehmen begründen.
+    module: [v1, v2, v3, vm]
+  - id: organisieren
+    name: Lager organisieren und verantworten
+    icon: "🚀"
+    text: Waren einlagern, Lager sichern, Umwelt schützen und das eigene Handeln reflektieren.
+    module: [o1, o2, o3, o4, om]
+  - id: kennzahlen
+    name: Lagerkennzahlen
+    icon: "🏆"
+    text: Lagerbestände und Lagerkosten berechnen und beurteilen.
+    module: [k1, k2, k3, k4, k5, km]
+
+einstufung: {bestehen: 80}
+
+moodle:
+  version: 5
+  freischaltung: einstufung
+  reihenfolge: nacheinander

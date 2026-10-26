@@ -1,0 +1,25 @@
+# Quellen mit Prüfstatus – siehe referenzen/qualitaet.md im Lernpfad-Baukasten
+- id: q-arbschg
+  titel: Arbeitsschutzgesetz, Arbeitsstättenverordnung, Produktsicherheitsgesetz (gesetze-im-internet.de)
+  url: https://www.gesetze-im-internet.de/arbschg/
+  art: gesetz
+  status: zu_pruefen
+  belegt: Pflichten des Arbeitgebers zum Unfallschutz; Sicherheitsbeauftragte ab 20 Beschäftigten (SGB VII)
+- id: q-clp
+  titel: CLP-Verordnung / GHS (Gefahrenpiktogramme, ECHA und Bundesanstalt für Arbeitsschutz)
+  url: https://www.baua.de/DE/Themen/Anwendungssichere-Chemikalien-und-Produkte/Chemikalienrecht/CLP-Verordnung/CLP-Verordnung_node.html
+  art: gesetz
+  status: zu_pruefen
+  belegt: neun Gefahrenpiktogramme, Kennzeichnung von Gefahrstoffen
+- id: q-dguv
+  titel: DGUV / Berufsgenossenschaften, Sicherheitszeichen (ASR A1.3)
+  url: https://www.dguv.de/
+  art: fachliteratur
+  status: zu_pruefen
+  belegt: Farben und Formen der Sicherheitszeichen (Verbot rot, Gebot blau, Warnung gelb, Rettung grün)
+- id: q-krwg
+  titel: Kreislaufwirtschaftsgesetz (KrWG), Abfallhierarchie
+  url: https://www.gesetze-im-internet.de/krwg/
+  art: gesetz
+  status: zu_pruefen
+  belegt: Rangfolge Vermeiden, Vorbereitung zur Wiederverwendung, Recycling, sonstige Verwertung, Beseitigung
