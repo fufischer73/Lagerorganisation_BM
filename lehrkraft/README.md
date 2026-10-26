@@ -1,14 +1,11 @@
----
-titel: Für Lehrkräfte
-icon: "🧑‍🏫"
-beschreibung: Hinweise und Musterlösungen für die Meilensteine.
-reihenfolge: 9
-nur_lehrkraft: true
----
+# Für Lehrkräfte: Hinweise und Musterlösungen
+
+Dieser Ordner gehört **nicht** zur veröffentlichten Web-Version.
+
 ## Hinweise zum Einsatz
 
 - Alle Aufgaben sind zum Selbstlernen gebaut. Rechenaufgaben haben Tipp, Rechenweg und Ergebnis zum Aufklappen.
-- Meilensteine werden von der Lehrkraft nach Raster bewertet. Musterlösung für M3: `lehrkraft/ergomax-muster.xlsx` (liegt nicht im Schüler-Pfad).
+- Meilensteine werden von der Lehrkraft nach Raster bewertet. Musterlösung für M3: `ergomax-muster.xlsx` (in diesem Ordner).
 
 ## Meilenstein 2: Zuordnung der Mängel (Rundgangsprotokoll)
 
