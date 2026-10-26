@@ -47,7 +47,7 @@ window.LP_KURS = {
    "level": "verstehen",
    "file": "v3-lagerarten.html",
    "title": "Lagerarten",
-   "min": 20,
+   "min": 25,
    "milestone": false
   },
   {
@@ -63,7 +63,7 @@ window.LP_KURS = {
    "level": "organisieren",
    "file": "o1-einlagerung-und-lagerplatzordnung.html",
    "title": "Einlagerung und Lagerplatzordnung",
-   "min": 35,
+   "min": 30,
    "milestone": false
   },
   {
@@ -87,7 +87,7 @@ window.LP_KURS = {
    "level": "organisieren",
    "file": "o4-umweltschutz-und-verantwortung-im-lager.html",
    "title": "Umweltschutz und Verantwortung im Lager",
-   "min": 30,
+   "min": 35,
    "milestone": false
   },
   {
@@ -103,7 +103,7 @@ window.LP_KURS = {
    "level": "kennzahlen",
    "file": "k1-bestande-im-lager-steuern.html",
    "title": "Bestände im Lager steuern",
-   "min": 30,
+   "min": 25,
    "milestone": false
   },
   {
@@ -111,7 +111,7 @@ window.LP_KURS = {
    "level": "kennzahlen",
    "file": "k2-der-durchschnittliche-lagerbestand.html",
    "title": "Der durchschnittliche Lagerbestand",
-   "min": 35,
+   "min": 40,
    "milestone": false
   },
   {
@@ -119,7 +119,7 @@ window.LP_KURS = {
    "level": "kennzahlen",
    "file": "k3-umschlagshaufigkeit-und-lagerdauer.html",
    "title": "Umschlagshäufigkeit und Lagerdauer",
-   "min": 35,
+   "min": 30,
    "milestone": false
   },
   {
@@ -127,7 +127,7 @@ window.LP_KURS = {
    "level": "kennzahlen",
    "file": "k4-lagerzinssatz-und-lagerzinsen.html",
    "title": "Lagerzinssatz und Lagerzinsen",
-   "min": 35,
+   "min": 30,
    "milestone": false
   },
   {

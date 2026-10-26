@@ -231,6 +231,7 @@
     var wrap = el("div", { "class": "done-wrap" });
     var btn = el("button", { "class": "btn", type: "button" });
     function paint() {
+      document.body.classList.toggle("modul-erledigt", !!state.done[mod.id]);
       if (state.done[mod.id]) { btn.textContent = "✓ Erledigt – nochmal öffnen?"; btn.classList.add("is-done"); }
       else { btn.textContent = "Modul als erledigt markieren"; btn.classList.remove("is-done"); }
     }
@@ -655,6 +656,40 @@
       if (confirm("Wirklich den gesamten Fortschritt (Häkchen, Notizen, erledigte Module) in diesem Browser löschen?")) {
         state.done = {}; state.checks = {}; state.notes = {}; state.selfcheck = {}; save(); location.reload();
       }
+    });
+
+    // Stand als Datei sichern und wieder laden (z. B. beim Gerätewechsel)
+    var sichern = document.getElementById("export-progress"), laden = document.getElementById("import-progress");
+    var fmsg = document.getElementById("progress-file-msg");
+    function dmeld(t, ok) { if (fmsg) { fmsg.textContent = " " + t; fmsg.style.color = ok ? "var(--ok)" : "var(--bad)"; } }
+    if (sichern) sichern.addEventListener("click", function () {
+      var jetzt = new Date(), p2 = function (n) { return (n < 10 ? "0" : "") + n; };
+      var datei = "mein-stand-" + K.kurzname + "-" + jetzt.getFullYear() + "-" + p2(jetzt.getMonth() + 1) + "-" + p2(jetzt.getDate()) + ".json";
+      var daten = { lernpfad: K.kurzname, version: 1, gespeichert: jetzt.toISOString(),
+        stand: { done: state.done, checks: state.checks, notes: state.notes, selfcheck: state.selfcheck, quiz: state.quiz, test: state.test } };
+      try {
+        var blob = new Blob([JSON.stringify(daten, null, 1)], { type: "application/json" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob); a.download = datei;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+        dmeld("Gespeichert als " + datei + ". Bewahre die Datei gut auf, zum Beispiel auf einem USB-Stick oder in deiner Cloud.", true);
+      } catch (e) { dmeld("Das Speichern hat nicht geklappt.", false); }
+    });
+    if (laden) laden.addEventListener("change", function () {
+      var f = laden.files && laden.files[0];
+      if (!f) return;
+      var r = new FileReader();
+      r.onload = function () {
+        try {
+          var d = JSON.parse(r.result);
+          if (!d || d.lernpfad !== K.kurzname || !d.stand) { dmeld("Diese Datei gehört nicht zu diesem Lernpfad.", false); return; }
+          if (!confirm("Den Stand in diesem Browser durch den Stand aus der Datei ersetzen?")) { laden.value = ""; return; }
+          applyStored(d.stand); save(); location.reload();
+        } catch (e) { dmeld("Die Datei konnte nicht gelesen werden.", false); }
+        laden.value = "";
+      };
+      r.readAsText(f);
     });
 
     // Alle Notizen als Text kopieren (z. B. zum Abgeben)

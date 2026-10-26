@@ -280,9 +280,38 @@
     felder.forEach(function (inp) { inp.addEventListener("keydown", function (ev) { if (ev.key === "Enter") { ev.preventDefault(); pruef(); } }); });
   }
 
+
+  // ---------- Hilfen nacheinander freischalten ----------
+  // Hat eine Aufgabe mehrere aufklappbare Hilfen (Tipp, Rechenweg, Ergebnis), lässt sich die nächste erst öffnen,
+  // wenn die vorherige geöffnet wurde.
+  function hilfenStaffeln() {
+    var aufgaben = document.querySelectorAll(".task");
+    for (var i = 0; i < aufgaben.length; i++) {
+      var ds = Array.prototype.slice.call(aufgaben[i].querySelectorAll("details")).filter(function (d) { return d.querySelector("summary"); });
+      for (var k = 1; k < ds.length; k++) sperren(ds[k], ds[k - 1]);
+    }
+  }
+  function sperren(d, vorher) {
+    var s = d.querySelector("summary"), orig = s.innerHTML;
+    d.classList.add("gesperrt");
+    s.innerHTML = "🔒 " + orig;
+    s.setAttribute("aria-disabled", "true");
+    s.title = "Öffne zuerst die Hilfe davor";
+    s.addEventListener("click", function (e) { if (d.classList.contains("gesperrt")) e.preventDefault(); });
+    vorher.addEventListener("toggle", function () {
+      if (vorher.open && d.classList.contains("gesperrt")) {
+        d.classList.remove("gesperrt");
+        s.innerHTML = orig;
+        s.removeAttribute("aria-disabled");
+        s.removeAttribute("title");
+      }
+    });
+  }
+
   var TYPEN = { auswahl: auswahl, zuordnen: zuordnen, luecken: luecken, reihenfolge: reihenfolge, rechnen: rechnen };
 
   document.addEventListener("DOMContentLoaded", function () {
+    hilfenStaffeln();
     var boxen = document.querySelectorAll("[data-uebung]");
     for (var i = 0; i < boxen.length; i++) {
       try {
