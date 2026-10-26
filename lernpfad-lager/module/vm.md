@@ -2,7 +2,7 @@
 titel: "Meilenstein 1: Lager-Steckbrief der BüroComfort GmbH"
 minuten: 40
 meilenstein: true
-review: entwurf
+review: freigegeben
 abgabe:
   titel: Lager-Steckbrief abgeben
   text: Lade deinen Lager-Steckbrief als Textdokument (.docx, .odt) oder als PDF hoch.

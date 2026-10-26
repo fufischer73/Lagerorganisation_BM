@@ -2,7 +2,7 @@
 titel: "Meilenstein 2: Mein Lager-Check"
 minuten: 45
 meilenstein: true
-review: entwurf
+review: freigegeben
 abgabe:
   titel: Lager-Check abgeben
   text: Lade deinen Lager-Check als Textdokument (.docx, .odt) oder als PDF hoch.

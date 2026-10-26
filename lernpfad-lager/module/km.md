@@ -2,7 +2,7 @@
 titel: "Meilenstein 3: Kennzahlen-Auswertung in OnlyOffice"
 minuten: 55
 meilenstein: true
-review: entwurf
+review: freigegeben
 abgabe:
   titel: Kennzahlen-Tabelle abgeben
   text: Lade deine Tabelle als .xlsx hoch. Die Beurteilung schreibst du in dasselbe Tabellenblatt oder in ein zweites Blatt.
