@@ -79,7 +79,7 @@ window.LP_KURS = {
    "level": "organisieren",
    "file": "o3-sicherheit-im-lager.html",
    "title": "Sicherheit im Lager",
-   "min": 35,
+   "min": 30,
    "milestone": false
   },
   {
