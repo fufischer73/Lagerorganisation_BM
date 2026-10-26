@@ -231,6 +231,7 @@
     var wrap = el("div", { "class": "done-wrap" });
     var btn = el("button", { "class": "btn", type: "button" });
     function paint() {
+      document.body.classList.toggle("modul-erledigt", !!state.done[mod.id]);
       if (state.done[mod.id]) { btn.textContent = "✓ Erledigt – nochmal öffnen?"; btn.classList.add("is-done"); }
       else { btn.textContent = "Modul als erledigt markieren"; btn.classList.remove("is-done"); }
     }

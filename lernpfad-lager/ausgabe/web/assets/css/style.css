@@ -501,3 +501,9 @@ html.lp-gesperrt body > *:not(.lp-zugang), html.lp-teil-gesperrt main { visibili
 .table-wrap img { max-height: 90px; width: auto; max-width: 100%; display: block; }
 .task details.gesperrt { opacity: .6; }
 .task details.gesperrt summary { cursor: not-allowed; color: var(--muted); }
+
+/* Inhalt, der erst nach „Modul erledigt“ erscheint (:::nacherledigt) */
+.nach-erledigt { display: none; }
+.nach-hinweis { color: var(--muted); font-size: .92rem; margin: .6rem 0; }
+.modul-erledigt .nach-erledigt { display: block; }
+.modul-erledigt .nach-hinweis { display: none; }
