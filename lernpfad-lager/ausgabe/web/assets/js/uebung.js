@@ -56,6 +56,8 @@
   function meldung(fb, ok, msg) {
     fb.className = "ue-fb " + (ok ? "ok" : "bad");
     fb.innerHTML = (ok ? "✅ " : "❌ ") + msg;
+    var box = fb.parentNode, rk = box && box.querySelector ? box.querySelector(".ue-retry") : null;
+    if (rk) rk.hidden = !!ok;
   }
   function erklaerung(d, fb) {
     if (d.erklaerung) fb.innerHTML += '<div class="ue-erkl">' + d.erklaerung + "</div>";
@@ -95,7 +97,7 @@
         meldung(g.fb, true, (sel.length === 1 && opts[sel[0]].feedback) || "Richtig!");
         erklaerung(d, g.fb);
       } else {
-        sel.forEach(function (i) { btns[i].classList.add("wrong"); });
+        sel.forEach(function (i) { btns[i].classList.add(opts[i].richtig ? "right" : "wrong"); });
         meldung(g.fb, false, (sel.length === 1 && opts[sel[0]].feedback) || d.hinweis || "Noch nicht ganz. Versuche es noch einmal.");
       }
     }
@@ -310,6 +312,40 @@
   }
 
 
+  // ---------- Nochmal versuchen ----------
+  // Zahlen, Lücken, Zuordnungen: nur die falschen Eingaben werden gelöscht, richtige bleiben stehen.
+  // Auswahl und Reihenfolge: Die Übung beginnt von vorn (neu gemischt).
+  function neuVersuch(box, d) {
+    if (d.typ === "auswahl" || d.typ === "reihenfolge") { vergessen(box); starte(box, d); return; }
+    Array.prototype.forEach.call(box.querySelectorAll("input.wrong, select.wrong"), function (f) {
+      if (f.tagName === "SELECT") f.value = ""; else f.value = "";
+      f.classList.remove("wrong");
+    });
+    var fb = box.querySelector(".ue-fb");
+    if (fb) { fb.className = "ue-fb"; fb.innerHTML = ""; }
+    var rk = box.querySelector(".ue-retry");
+    if (rk) rk.hidden = true;
+    var erst = box.querySelector("input.ue-luecke, input.ue-zahl, select");
+    if (erst && !erst.value) erst.focus();
+    box.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+  function vergessen(box) {
+    var L = lp();
+    if (!L || !L.state.uebungen) return;
+    delete L.state.uebungen[platz(box)];
+    if (L.save) L.save();
+  }
+  function starte(box, d) {
+    TYPEN[d.typ](d, box);
+    var k = box.querySelector(".ue-knoepfe");
+    if (k) {
+      var b = el("button", { type: "button", "class": "btn ue-btn ue-sek ue-retry" }, "Nochmal versuchen");
+      b.hidden = true;
+      b.addEventListener("click", function () { neuVersuch(box, d); });
+      k.appendChild(b);
+    }
+  }
+
   // ---------- Eingaben merken und wiederherstellen ----------
   var MODUL = document.body.getAttribute("data-module") || location.pathname.split("/").pop() || "seite";
   function lp() { return window.LP && window.LP.state ? window.LP : null; }
@@ -374,6 +410,8 @@
       } catch (e) { /* Wiederherstellen ist nur eine Hilfe */ }
     }
     still = false;
+    if (box.getAttribute("data-ps")) return;
+    box.setAttribute("data-ps", "1");
     ["input", "change", "click"].forEach(function (ev) { box.addEventListener(ev, function () { setTimeout(sichern, 0); }); });
   }
 
@@ -385,7 +423,7 @@
     for (var i = 0; i < boxen.length; i++) {
       try {
         var d = JSON.parse(boxen[i].getAttribute("data-uebung"));
-        if (TYPEN[d.typ]) { TYPEN[d.typ](d, boxen[i]); persistenz(boxen[i], d); }
+        if (TYPEN[d.typ]) { starte(boxen[i], d); persistenz(boxen[i], d); }
       } catch (e) {
         boxen[i].innerHTML = '<div class="box-title">Übung konnte nicht geladen werden</div>';
       }

@@ -507,3 +507,4 @@ html.lp-gesperrt body > *:not(.lp-zugang), html.lp-teil-gesperrt main { visibili
 .nach-hinweis { color: var(--muted); font-size: .92rem; margin: .6rem 0; }
 .modul-erledigt .nach-erledigt { display: block; }
 .modul-erledigt .nach-hinweis { display: none; }
+.ue-retry[hidden] { display: none; }
