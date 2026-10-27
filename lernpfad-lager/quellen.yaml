@@ -23,10 +23,18 @@
   art: gesetz
   status: zu_pruefen
   belegt: Rangfolge Vermeiden, Vorbereitung zur Wiederverwendung, Recycling, sonstige Verwertung, Beseitigung
+- id: q-ghs-unece
+  titel: GHS-Gefahrenpiktogramme (UNECE, Globally Harmonized System)
+  url: https://unece.org/transport/dangerous-goods/ghs-pictograms
+  art: norm
+  lizenz: "Gemeinfrei (Public Domain): standardisierte Symbole ohne Schöpfungshöhe; Angabe der Lehrkraft, Hinweise zur Verwendung fremder Grafiken in OER: twillo.de (Hilfecenter)"
+  status: verifiziert
+  geprueft_am: 2026-10-27
+  belegt: Die neun Gefahrenpiktogramme im Ordner material/ (ghs-*.png), Bildgröße für das Web verkleinert. Herkunftsangabe und Lizenz durch die Lehrkraft geprüft.
 - id: q-bgw-bilder
-  titel: Sicherheitszeichen nach ASR A1.3 und GHS-Piktogramme (BGW-Lernportal)
+  titel: Sicherheitszeichen nach ASR A1.3 (BGW-Lernportal)
   url: https://bgw.uv-lernportal.de/
   art: fachliteratur
-  lizenz: "Laut Lehrkraft für den Unterricht nutzbar; Nutzungsbedingungen noch nicht geprüft"
+  lizenz: "Laut Lehrkraft für den Unterricht nutzbar; Nutzungsbedingungen der BGW noch nicht geprüft"
   status: zu_pruefen
-  belegt: Bilder im Ordner material/ (zeichen-*.png, ghs-*.png), Bildgröße für das Web verkleinert
+  belegt: Die fünf Sicherheitszeichen im Ordner material/ (zeichen-*.png), Bildgröße für das Web verkleinert
