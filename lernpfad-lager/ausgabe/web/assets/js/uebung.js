@@ -1,6 +1,7 @@
 /* Interaktive Übungen: <div class="uebung" data-uebung='{"typ": …}'></div>
    Typen: auswahl, zuordnen, luecken, reihenfolge, rechnen. bausteine.py erzeugt die Daten aus :::uebung.
-   Läuft rein im Browser (auch im Moodle-Lernpaket), nichts wird gespeichert oder gesendet. */
+   Läuft rein im Browser (auch im Moodle-Lernpaket). Eingaben werden im Lernstand des Browsers gemerkt (LP.state.uebungen)
+   und beim Wiederöffnen der Seite hergestellt; es wird nichts an einen Server gesendet. */
 (function () {
   "use strict";
 
@@ -308,6 +309,74 @@
     });
   }
 
+
+  // ---------- Eingaben merken und wiederherstellen ----------
+  var MODUL = document.body.getAttribute("data-module") || location.pathname.split("/").pop() || "seite";
+  function lp() { return window.LP && window.LP.state ? window.LP : null; }
+  function platz(box) {
+    var alle = document.querySelectorAll("[data-uebung]");
+    return MODUL + ":" + Array.prototype.indexOf.call(alle, box);
+  }
+  function zustand(box, d) {
+    var z = { t: d.typ, w: [], s: [], o: [], g: false };
+    var fb = box.querySelector(".ue-fb");
+    z.g = !!(fb && /(^| )(ok|bad)( |$)/.test(fb.className));
+    Array.prototype.forEach.call(box.querySelectorAll("input[type=text]"), function (i) { z.w.push(i.value); });
+    Array.prototype.forEach.call(box.querySelectorAll("select"), function (s) { z.w.push(s.value === "" ? "" : s.options[s.selectedIndex].textContent); });
+    Array.prototype.forEach.call(box.querySelectorAll(".ue-opt"), function (b) {
+      if (b.classList.contains("sel") || b.classList.contains("right") || b.classList.contains("wrong")) z.s.push(b.innerHTML);
+    });
+    Array.prototype.forEach.call(box.querySelectorAll(".ue-schritt"), function (s) { z.o.push(s.textContent.trim()); });
+    return z;
+  }
+  function persistenz(box, d) {
+    var L = lp();
+    if (!L) return;
+    var ort = platz(box), still = true;
+    function sichern() {
+      if (still) return;
+      L.state.uebungen = L.state.uebungen || {};
+      L.state.uebungen[ort] = zustand(box, d);
+      if (L.save) L.save();
+    }
+    function pruefknopf() { return Array.prototype.filter.call(box.querySelectorAll("button"), function (b) { return b.textContent.trim() === "Prüfen"; })[0]; }
+    var z = (L.state.uebungen || {})[ort];
+    if (z && z.t === d.typ) {
+      try {
+        if (d.typ === "reihenfolge" && z.o.length === d.schritte.length) {
+          for (var pos = 0; pos < z.o.length; pos++) {
+            for (var n = 0; n < 40; n++) {
+              var lis = Array.prototype.slice.call(box.querySelectorAll(".ue-reihe li"));
+              var ist = lis.map(function (li) { return li.querySelector(".ue-schritt").textContent.trim(); });
+              var von = ist.indexOf(z.o[pos]);
+              if (von < 0 || von <= pos) break;
+              var up = lis[von].querySelector("button[aria-label='Nach oben']");
+              if (!up || up.disabled) break;
+              up.click();
+            }
+          }
+        } else {
+          var felder = box.querySelectorAll("input[type=text], select");
+          Array.prototype.forEach.call(felder, function (f, k) {
+            var v = z.w[k] == null ? "" : z.w[k];
+            if (f.tagName === "SELECT") {
+              for (var o = 0; o < f.options.length; o++) if (f.options[o].textContent === v && v !== "") { f.value = f.options[o].value; break; }
+            } else f.value = v;
+          });
+          Array.prototype.forEach.call(box.querySelectorAll(".ue-opt"), function (b) {
+            if (z.s.indexOf(b.innerHTML) > -1) b.click();
+          });
+        }
+        if (z.g) {
+          var k = pruefknopf();
+          if (k) k.click();
+        }
+      } catch (e) { /* Wiederherstellen ist nur eine Hilfe */ }
+    }
+    still = false;
+    ["input", "change", "click"].forEach(function (ev) { box.addEventListener(ev, function () { setTimeout(sichern, 0); }); });
+  }
+
   var TYPEN = { auswahl: auswahl, zuordnen: zuordnen, luecken: luecken, reihenfolge: reihenfolge, rechnen: rechnen };
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -316,7 +385,7 @@
     for (var i = 0; i < boxen.length; i++) {
       try {
         var d = JSON.parse(boxen[i].getAttribute("data-uebung"));
-        if (TYPEN[d.typ]) TYPEN[d.typ](d, boxen[i]);
+        if (TYPEN[d.typ]) { TYPEN[d.typ](d, boxen[i]); persistenz(boxen[i], d); }
       } catch (e) {
         boxen[i].innerHTML = '<div class="box-title">Übung konnte nicht geladen werden</div>';
       }
