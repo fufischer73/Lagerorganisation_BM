@@ -60,7 +60,7 @@
   // nur die Programmwahl im localStorage (gilt so für alle Module des Kurses).
   var KEY = "lernpfad-" + K.kurzname + "-v1";
   var APPKEY = KEY + ":app";
-  var state = { done: {}, checks: {}, notes: {}, selfcheck: {}, quiz: {}, test: {}, app: VAR_IDS[0] || "" };
+  var state = { done: {}, checks: {}, notes: {}, selfcheck: {}, quiz: {}, test: {}, uebungen: {}, app: VAR_IDS[0] || "" };
   function applyStored(parsed) {
     if (!parsed) return;
     state.done = parsed.done || {};
@@ -69,6 +69,7 @@
     state.selfcheck = parsed.selfcheck || {};
     state.quiz = parsed.quiz || {};
     state.test = parsed.test || {};
+    state.uebungen = parsed.uebungen || {};
     if (parsed.app) state.app = parsed.app;
   }
   try {
@@ -82,7 +83,7 @@
   } catch (e) { /* ohne Speicher weiterarbeiten */ }
   function save() {
     if (SC) {
-      SC.save({ done: state.done, checks: state.checks, notes: state.notes, quiz: state.quiz, test: state.test });
+      SC.save({ done: state.done, checks: state.checks, notes: state.notes, quiz: state.quiz, test: state.test, uebungen: state.uebungen });
       try { localStorage.setItem(APPKEY, state.app); } catch (e) { /* ignorieren */ }
       return;
     }
@@ -247,9 +248,16 @@
     });
     paint();
     wrap.appendChild(btn);
-    wrap.appendChild(el("span", { style: "color:var(--muted);font-size:.9rem" },
-      A("Markiere das Modul erst, wenn du die Basis-Aufgaben und deine Checkliste geschafft hast.") +
-      (SC ? A(" Dein Stand wird in Moodle gespeichert.") : "")));
+    var hinweis = el("span", { style: "color:var(--muted);font-size:.9rem" });
+    function hinweisText() {
+      var t = A("Markiere das Modul erst, wenn du die Basis-Aufgaben und deine Checkliste geschafft hast.") +
+        (SC ? A(" Dein Stand wird in Moodle gespeichert.") : "");
+      if (!SC && state.done[mod.id]) t = A("Gespeichert: Deine Eingaben und Häkchen bleiben in diesem Browser erhalten. Auf der Übersicht kannst du deinen Stand zusätzlich als Datei sichern.");
+      hinweis.textContent = t;
+    }
+    hinweisText();
+    btn.addEventListener("click", hinweisText);
+    wrap.appendChild(hinweis);
     main.appendChild(wrap);
 
     if (PKG) {
@@ -654,7 +662,7 @@
     var reset = document.getElementById("reset-progress");
     if (reset) reset.addEventListener("click", function () {
       if (confirm("Wirklich den gesamten Fortschritt (Häkchen, Notizen, erledigte Module) in diesem Browser löschen?")) {
-        state.done = {}; state.checks = {}; state.notes = {}; state.selfcheck = {}; save(); location.reload();
+        state.done = {}; state.checks = {}; state.notes = {}; state.selfcheck = {}; state.uebungen = {}; save(); location.reload();
       }
     });
 
@@ -666,7 +674,7 @@
       var jetzt = new Date(), p2 = function (n) { return (n < 10 ? "0" : "") + n; };
       var datei = "mein-stand-" + K.kurzname + "-" + jetzt.getFullYear() + "-" + p2(jetzt.getMonth() + 1) + "-" + p2(jetzt.getDate()) + ".json";
       var daten = { lernpfad: K.kurzname, version: 1, gespeichert: jetzt.toISOString(),
-        stand: { done: state.done, checks: state.checks, notes: state.notes, selfcheck: state.selfcheck, quiz: state.quiz, test: state.test } };
+        stand: { done: state.done, checks: state.checks, notes: state.notes, selfcheck: state.selfcheck, quiz: state.quiz, test: state.test, uebungen: state.uebungen } };
       try {
         var blob = new Blob([JSON.stringify(daten, null, 1)], { type: "application/json" });
         var a = document.createElement("a");

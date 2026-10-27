@@ -216,9 +216,14 @@ def main():
                 return (f'<div style="font-size:8px;width:100%;text-align:center;color:#666">{kopf} · {art} · '
                         'Seite <span class="pageNumber"></span> von <span class="totalPages"></span></div>')
 
+            def frisch():
+                pg.goto(datei.as_uri())
+                pg.evaluate("try { localStorage.clear(); } catch (e) {}")   # keinen gemerkten Lernstand mitnehmen
+                pg.reload()
+                pg.wait_for_timeout(400)
+
             # Lösungsblatt
-            pg.goto(datei.as_uri())
-            pg.wait_for_timeout(400)
+            frisch()
             pg.evaluate(LOESEN)
             pg.add_style_tag(content=DRUCK_CSS)
             pg.emulate_media(media="print")
@@ -228,8 +233,7 @@ def main():
             print("PDF:", ziel.name, ziel.stat().st_size // 1024, "KB")
 
             # Arbeitsblatt (frische Seite, ohne Lösungen)
-            pg.goto(datei.as_uri())
-            pg.wait_for_timeout(400)
+            frisch()
             titel = pg.evaluate("document.querySelector('main h1') ? document.querySelector('main h1').textContent : document.title")
             pg.evaluate(ARBEITSBLATT, "Arbeitsblatt: " + titel)
             pg.add_style_tag(content=AB_CSS)
